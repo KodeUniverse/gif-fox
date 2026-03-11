@@ -1,4 +1,4 @@
-import "dotenv/config"
+import "dotenv/config";
 
 const API_KEY = process.env.GIF_API_KEY;
 
@@ -35,9 +35,6 @@ async function fetchGIFs(query, options = {
         console.log(error);
     }
 }
-
-
-console.log(await fetchGIFs("sonic"));
 
 //browser.runtime.onInstalled.addListener(() => { //getelement returning undefined
 //    const search_box = document.getElementById("search-box");
