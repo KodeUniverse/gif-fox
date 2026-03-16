@@ -3,12 +3,9 @@
     font-size: 24px;
     margin: 15px;
 }
-.image-grid {
+#image-grid {
     /* box-sizing: border-box; */
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-}
-.image-grid img{
-    width: 120px;
-    height: 120px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1em;
 }
