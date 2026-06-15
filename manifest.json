@@ -3,21 +3,25 @@
     "name": "GIF Fox",
     "version": "1.0",
   
-    "description": "A handy browser extension that allows you to find reaction images in GIF and singe-image formats.",
+    "description": "A handy browser extension that allows you to find reaction images in GIF and single-image formats.",
     "homepage_url": "https://github.com/KodeUniverse/gif-fox",
   
     "icons": {
-      "32": "icons/satania-icon-32.png",
-      "48": "icons/satania-icon-48.png",
-      "96": "icons/satania-icon-96.png"
+      "32": "icons/fox.svg",
+      "48": "icons/fox.svg",
+      "96": "icons/fox.svg"
     },
 
-    "permissions": ["activeTab"],
+    "permissions": ["activeTab", "storage"],
     
     "browser_action": {
-        "default_icon": "icons/satania-icon-96.png",
-        "default_title": "Image Picker",
-        "default_popup": "src/popup/window.html"
+        "default_icon": "icons/fox.svg",
+        "default_title": "GIF Fox",
+        "default_popup": "dist/index.html"
+    },
+
+    "background": {
+        "scripts": ["dist/background.js"],
+        "persistent": false
     }
-  }
-  
+}
