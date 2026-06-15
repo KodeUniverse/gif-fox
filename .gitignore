@@ -2,3 +2,4 @@ node_modules
 .env
 dist
 test_api.sh
+gif-fox.zip

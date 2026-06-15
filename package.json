@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "vite build --watch",
     "build": "vite build",
+    "deploy": "npm run build && zip -r gif-fox.zip manifest.json icons/ dist/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
