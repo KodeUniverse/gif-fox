@@ -2,24 +2,25 @@
     "manifest_version": 2,
     "name": "GIF Fox",
     "version": "1.0",
-  
     "description": "A handy browser extension that allows you to find reaction images in GIF and single-image formats.",
     "homepage_url": "https://github.com/KodeUniverse/gif-fox",
-  
     "icons": {
       "32": "icons/fox.svg",
       "48": "icons/fox.svg",
       "96": "icons/fox.svg"
     },
-
+    "browser_specific_settings": {
+      "gecko": {
+        "id": "gif-fox@kodeuniverse.github.io",
+        "data_collection_permissions": false
+      }
+    },
     "permissions": ["activeTab", "storage"],
-    
     "browser_action": {
         "default_icon": "icons/fox.svg",
         "default_title": "GIF Fox",
         "default_popup": "dist/index.html"
     },
-
     "background": {
         "scripts": ["dist/background.js"],
         "persistent": false
