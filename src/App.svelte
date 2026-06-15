@@ -17,6 +17,7 @@
     let loadingMore = $state(false);
     let activeQuery = $state('');
     let sentinel = $state(null);
+    let copiedUrl = $state(null);
 
     const FORMAT_PRIORITY = ['gif', 'webp', 'mp4', 'webm'];
 
@@ -67,6 +68,16 @@
 
     function closeSettings() {
         view = 'main';
+    }
+
+    async function copyGifUrl(url) {
+        try {
+            await navigator.clipboard.writeText(url);
+            copiedUrl = url;
+            setTimeout(() => { if (copiedUrl === url) copiedUrl = null; }, 1500);
+        } catch {
+            // fallback for contexts where clipboard API is unavailable
+        }
     }
 
     async function applyTheme(value) {
@@ -254,11 +265,16 @@
     {:else}
         <div id="image-grid">
             {#each gifs as gif}
-                <img
-                    src={gif.url}
-                    alt="GIF"
-                    loading="lazy"
-                />
+                <div class="gif-cell" class:copied={copiedUrl === gif.url} role="button" tabindex="0" onclick={() => copyGifUrl(gif.url)} onkeydown={(e) => e.key === 'Enter' && copyGifUrl(gif.url)}>
+                    <img
+                        src={gif.url}
+                        alt="GIF"
+                        loading="lazy"
+                    />
+                    {#if copiedUrl === gif.url}
+                        <span class="copied-badge">Copied!</span>
+                    {/if}
+                </div>
             {/each}
         </div>
         <div bind:this={sentinel} class="sentinel">
@@ -569,20 +585,42 @@
         column-gap: 1em;
     }
 
-    #image-grid img {
+    .gif-cell {
+        break-inside: avoid;
+        margin-bottom: 1em;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .gif-cell img {
         width: 100%;
         height: auto;
         border-radius: 6px;
-        cursor: pointer;
         display: block;
-        break-inside: avoid;
-        margin-bottom: 1em;
         transition: transform 0.15s, box-shadow 0.15s;
     }
 
-    #image-grid img:hover {
+    .gif-cell:hover img {
         transform: scale(1.03);
         box-shadow: 0 4px 12px var(--shadow);
+    }
+
+    .gif-cell.copied img {
+        opacity: 0.5;
+    }
+
+    .copied-badge {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        font-weight: 700;
+        color: #fff;
+        background: var(--accent);
+        border-radius: 6px;
+        pointer-events: none;
     }
 
     .sentinel {
