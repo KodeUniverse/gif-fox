@@ -30,11 +30,5 @@ npm run build
 
 Output goes to `dist/`. Load the extension in Firefox via `about:debugging#/runtime/this-firefox` → Load Temporary Add-on → select `manifest.json`.
 
-## Submit to AMO
-
-```sh
-npm run build
-zip -r gif-fox.zip manifest.json icons/ dist/
-```
-
-Upload the zip to [addons.mozilla.org](https://addons.mozilla.org).
+## Installation for Users
+Mozilla is currently reviewing the extension, once it is published on the store there will be a download link here.
